@@ -1,0 +1,9 @@
+{
+    "to": "https://97da-2405-9800-bcb2-530f-e50a-8238-8690-7060.ngrok-free.app/webhook",
+    "messages": [
+        {
+            "type": "text",
+            "text": "Hello, world1"
+        }
+    ]
+}
