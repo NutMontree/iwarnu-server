@@ -158,7 +158,7 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: 'https://iwarnu.vercel.app/',
+    origin: 'https://iwarnu-server.vercel.app',
   })
 );
 
