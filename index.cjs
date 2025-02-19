@@ -162,13 +162,13 @@ app.use(
   })
 );
 
-app.get("/test", (_req, res) => {
+app.get("https://iwarnu-server.vercel.app/test", (_req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.json("test ok");
   console.log("connect database")
 });
 
-app.post("/register", async (req, res) => {
+app.post("https://iwarnu-server.vercel.app/register", async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   const { name, email, password, number, phone, agency } = req.body;
   const userDoc = await User.findOne();
@@ -187,7 +187,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-app.post("/login", async (req, res) => {
+app.post("https://iwarnu-server.vercel.app/login", async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   const { email, password } = req.body;
   const userDoc = await User.findOne({ email });
@@ -248,7 +248,7 @@ app.post("/login", async (req, res) => {
   // await notifyLine(tokenLine, text)
 });
 
-app.get("/profile", (req, res) => {
+app.get("https://iwarnu-server.vercel.app/profile", (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   const { token } = req.cookies;
   if (token) {
@@ -265,11 +265,11 @@ app.get("/profile", (req, res) => {
 
 });
 
-app.post("/logout", (_req, res) => {
+app.post("https://iwarnu-server.vercel.app/logout", (_req, res) => {
   res.cookie("token", "").json(true);
 });
 
-app.post("/reports", async (req, res) => {
+app.post("https://iwarnu-server.vercel.app/reports", async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   const { id, title, phone, date, time, address, description, district, amphoe, province, zipcode } = req.body;
   try {
@@ -285,7 +285,7 @@ app.post("/reports", async (req, res) => {
   };
 });
 
-app.get("/reports", (req, res) => {
+app.get("https://iwarnu-server.vercel.app/reports", (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   const { token } = req.cookies;
   jwt.verify(token, jwtSecret, {}, async (_err, _reportData) => {
@@ -294,13 +294,13 @@ app.get("/reports", (req, res) => {
   });
 });
 
-app.get("/reports/:id", async (req, res) => {
+app.get("https://iwarnu-server.vercel.app/reports/:id", async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   const { id } = req.params;
   res.json(await Report.findById(id));
 });
 
-app.put("/reports", async (req, res) => {
+app.put("https://iwarnu-server.vercel.app/reports", async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   const { token } = req.cookies;
   const { id, title, phone, date, time, address, description, district, amphoe, province, zipcode } = req.body;
@@ -327,14 +327,14 @@ app.put("/reports", async (req, res) => {
   });
 });
 
-app.delete("/reports/:id", async (req, res) => {
+app.delete("https://iwarnu-server.vercel.app/reports/:id", async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   const { id } = req.params.id;
   const data = await Report.deleteOne({ id });
   res.send({ success: true, message: "ระบบทำการลบข้อมูลเรียบร้อยแล้ว", data: data })
 });
 
-app.get("/reports", async (_req, res) => {
+app.get("https://iwarnu-server.vercel.app/reports", async (_req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   res.json(await Report.find());
 });
